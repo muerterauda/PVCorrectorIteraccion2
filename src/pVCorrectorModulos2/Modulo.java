@@ -87,6 +87,6 @@ public class Modulo implements IModulo {
 
 	@Override
 	public String getRs() {
-		return null;
+		return Rs;
 	}
 }

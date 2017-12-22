@@ -34,7 +34,7 @@ public class Medida implements IMedida {
 	  }
 
 	public Medida(int i) {
-		String[]med=myBD.select("select * from medida where id= " + id + " ;").get(0);
+		String[]med=myBD.select("select * from medida where id= " + i + " ;").get(0);
 		id=Integer.parseInt(med[0]);
 		campania=med[1];
 		fecha=med[2];
@@ -42,11 +42,12 @@ public class Medida implements IMedida {
 		Isc=med[4];
 		Voc=med[5];
 		Pmax=med[6];
-		VPmax=med[7];
-		FF=med[8];
-		modulo=med[9];
+		IPmax=med[7];
+		VPmax=med[8];
+		FF=med[9];
+		modulo=med[10];
 		try {
-			medOrig=Integer.parseInt(med[10]);
+			medOrig=Integer.parseInt(med[11]);
 		}catch(Exception e) {
 			medOrig=null;
 		}
@@ -254,13 +255,16 @@ public class Medida implements IMedida {
 	}
 
 	public void setParametrosCorreccion(String t, String g) {
-		   if(medOrig != null) {
-			      Integer n = Integer.parseInt(myBD.selectEscalar("SELECT COUNT(*) FROM PARAMETROSC WHERE id = "+ this.id+";"));
-			      if(n > 0) {
-			        myBD.update("UPDATE PARAMETROSC SET temperaturaObjetivo = '"+t+"', irradianciaObjetivo = '"+g+"' WHERE id = "+this.id+";");
-			      } else {
-			        myBD.insert("INSERT INTO PARAMETROSC (id, temperaturaObjetivo, irradianciaObjetivo) VALUES ("+this.id+", '"+t+"', '"+g+"');");
-			      }
-			    }
+		if (medOrig != null) {
+			Integer n = Integer
+					.parseInt(myBD.selectEscalar("SELECT COUNT(*) FROM PARAMETROSC WHERE id = " + this.id + ";"));
+			if (n > 0) {
+				myBD.update("UPDATE PARAMETROSC SET temperaturaObjetivo = '" + t + "', irradianciaObjetivo = '" + g
+						+ "' WHERE id = " + this.id + ";");
+			} else {
+				myBD.insert("INSERT INTO PARAMETROSC (id, temperaturaObjetivo, irradianciaObjetivo) VALUES (" + this.id
+						+ ", '" + t + "', '" + g + "');");
+			}
+		}
 	}
 }

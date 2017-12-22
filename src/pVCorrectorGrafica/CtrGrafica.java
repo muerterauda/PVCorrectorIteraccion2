@@ -17,6 +17,7 @@ public class CtrGrafica implements ActionListener{
 	private MetCorrecion met;
 	public CtrGrafica(VistaGraficas menu, IMedida med) {
 		this.vista= menu;
+		this.med=med;
 		this.vista.mensaje("Inicializacion correcta", Color.BLUE);
 	}
 	@Override
@@ -24,26 +25,29 @@ public class CtrGrafica implements ActionListener{
 		String comando = evento.getActionCommand();
 		vista.mensaje(" ",Color.BLUE);
 		if(comando.equals(VistaGraficas.AplicarPorcedimiento)) {
-			try {
+			//try {
 			switch(vista.getMetodoSelected()) {
 			case 0:
 				met=null;
 				vista.mensaje("No se ha seleccionado ningun metodo",Color.RED);
+				break;
 			case 1:
 				Tuple2<String,String> b=vista.seleccionarParametros();
 				met= new Metodo1(med,b._1(), b._2());
+				break;
 			default:
 				met=null;
 				vista.mensaje("No implementado",Color.RED);
+				break;
 			}
 			if(met!=null) {
 				String nueva=null;
 				nueva= met.aplicarMetodo();
 				vista.añadirGrafica(nueva);
 			}
-			}catch(Exception e) {
-				vista.mensaje(e.getMessage(), Color.RED);
-			}
+			//}catch(Exception e) {
+				//vista.mensaje(e.getMessage(), Color.RED);
+			//}
 		}
 	}
 }

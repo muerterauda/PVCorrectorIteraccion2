@@ -25,9 +25,9 @@ public abstract class MetCorrecion {
 		med = medida;
 		mod = new Modulo(medida.getModulo());
 		
-		alfa = partirString(mod.getAlfa());
+		alfa = partirString(mod.getAlfa())/1000;
 
-		beta = partirString(mod.getBeta());
+		beta = partirString(mod.getBeta())/1000;
 		
 		rs = partirString(mod.getRs());
 		

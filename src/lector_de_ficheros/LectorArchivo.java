@@ -190,21 +190,21 @@ public class LectorArchivo {
 			String beta = lista.get(16);
 			String gamma = lista.get(18);
 			String kappa = lista.get(20);
-			String rs = lista.get(lista.size()-7);
+			String rs = lista.get(37);
 			if (lista.get(15) == "-1") {
-				alfa = alfa + " mA/ï¿½C";
+				alfa = alfa + " mA/ºC";
 			}
 			if (lista.get(17) == "-1") {
-				beta = beta + " mV/ï¿½C";
+				beta = beta + " mV/ºC";
 			}
 			if (lista.get(19) == "-1") {
-				gamma = gamma + " mW/ï¿½C";
+				gamma = gamma + " mW/ºC";
 			}
 			if (lista.get(21) == "-1") {
-				kappa = kappa + " mOhm/ï¿½C";
+				kappa = kappa + " mOhm/ºC";
 			}
 
-			//new Modulo(modulo, alfa, beta, gamma, kappa, rs);
+			new Modulo(modulo, alfa, beta, gamma, kappa, rs);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
