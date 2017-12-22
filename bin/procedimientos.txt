@@ -1,6 +1,0 @@
-Ningun metodo seleccionado
-Metodo 1 de la norma IEC-60891
-Metodo 2 de la norma IEC-60891
-Metodo 3 de la norma IEC-60891
-Metodo Americano
-Metodo Alonso

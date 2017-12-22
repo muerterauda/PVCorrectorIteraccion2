@@ -157,6 +157,7 @@ public class PanelGrafica  extends JPanel implements VistaGraficas{
 	@Override
 	public void añadirGrafica(String v) {
 		modeloGraficasCorregidas.addElement(v);
+		listaCorrecciones.add(new Medida(Integer.parseInt(v.split(" ")[0])));
 	}
 	@Override
 	public Tuple2<String,String> seleccionarParametros() {
