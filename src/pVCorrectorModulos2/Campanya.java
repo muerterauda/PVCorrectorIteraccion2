@@ -50,7 +50,21 @@ public class Campanya implements ICampanya {
 			setFechaFin(ff);
 		}
 	}
-	
+
+	public Campanya(String nombre, String modulo) {
+		if (ICampanya.isInDB(nombre, modulo)) {
+			String[] camp = myBD
+					.select("SELECT * FROM Campanya WHERE Nombre = '" + nombre + "' AND ModuloNombre = '" + modulo + "';")
+					.get(0);
+			this.nombre = camp[0];
+			this.modulo = camp[1];
+			fechaInit = camp[2];
+			fechaFin = camp[3];
+		}else {
+			System.out.println("no está");
+		}
+	}
+
 	public String getFechaInit() {
 		return fechaInit;
 	}

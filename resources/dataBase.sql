@@ -21,6 +21,7 @@ CREATE TABLE Medida (
 	FF varchar(20) NULL,	
 	ModuloNombre varchar(50) NOT NULL,
 	MedidaOrig int NULL,
+	FOREIGN KEY(Campania, ModuloNombre) REFERENCES Campanya(Nombre, ModuloNombre),
 	FOREIGN KEY(ModuloNombre) REFERENCES Modulo(Name),
 	FOREIGN KEY(MedidaOrig) REFERENCES Medida(id));
 
