@@ -32,8 +32,12 @@ public class CtrGrafica implements ActionListener{
 				vista.mensaje("No se ha seleccionado ningun metodo",Color.RED);
 				break;
 			case 1:
+				try {
 				Tuple2<String,String> b=vista.seleccionarParametros();
 				met= new Metodo1(med,b._1(), b._2());
+				}catch(Exception e) {
+					vista.mensaje("Error con los parametros", Color.RED);
+				}
 				break;
 			default:
 				met=null;

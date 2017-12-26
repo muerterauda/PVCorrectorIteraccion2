@@ -15,7 +15,7 @@ public interface VistaModulos {
 	 /**
 	  * Establece el controlador
 	  */
-	void controlador(ActionListener ctrMenu, ListSelectionListener campanyas);
+	void controlador(ActionListener ctrMenu);
 	 /**
 	  *Devuelve el fichero marcado por el usuario
 	  */

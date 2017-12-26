@@ -24,7 +24,7 @@ public class Main {
 		JFrame ventana = new JFrame("PVCorrector_Modulos");
 		VistaModulos vista= new PanelModulos(m, ventana);
 		CtrModulos ctr= new CtrModulos(vista);
-		vista.controlador(ctr, null);
+		vista.controlador(ctr);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setContentPane((JPanel) vista);
 		ventana.setPreferredSize(new Dimension(400*2,300*2));

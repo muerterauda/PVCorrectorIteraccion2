@@ -2,6 +2,7 @@ package pVCorrectorModulos2;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
@@ -21,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.IconView;
 
 public class PanelModulos extends JPanel implements VistaModulos{
 	private JLabel mensajeJL;
@@ -33,64 +36,79 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	private JPanel panelD;
 	private JPanel panelE;
 	private JPanel panelF;
+	private JPanel panelG;
+	private JLabel Titulo;
 	private List <JCheckBox > modulos;
-	private List <JCheckBox > campanyas;
 	private JButton borrarJB;
 	private JButton editarJB;
 	private JButton importarJB;
 	private JButton verMedidasJB;
 	private JLabel moduloJL;
 	private JFrame frame;
-//	private Map<String, List<String>> valores1;
+	private Imagen uma;
+	private Imagen pyro;
 	public PanelModulos(List<String> valores, JFrame frame) {
-		this.frame=frame;
-//		valores1=valores;
-		panelA= new JPanel();
-		if(valores!=null){
-			panelA.setLayout(new GridLayout(valores.size()+1, 1));
-		}else{
-			panelA.setLayout(new GridLayout(1, 1));
-		}
-		panelB = new JPanel();
-		panelD= new JPanel();
-		panelE= new JPanel();
-		panelF= new JPanel();
-		mensajeJL = new JLabel("");
-		moduloJL= new JLabel("     MODULOS");
-		moduloJL.setHorizontalAlignment(SwingConstants.RIGHT);
-		borrarJB= new JButton("Borrar");
-		editarJB= new JButton("Editar");
-		importarJB= new JButton("Importar");
-		verMedidasJB= new JButton("Ver medidas");
-		modulos= new LinkedList<JCheckBox>();
+		this.frame = frame;
+		crearComponentes(valores);
 		panelA.add(moduloJL);
-		if(valores!=null){
-		for(String st: valores){
-			JCheckBox modulo= new JCheckBox(st);
-			modulos.add(modulo);
-			panelA.add(modulo);
+		if (valores != null) {
+			for (String st : valores) {
+				JCheckBox modulo = new JCheckBox(st);
+				modulos.add(modulo);
+				panelA.add(modulo);
+			}
+
 		}
-		
-	}
+		uma = new Imagen("/uma.jpg");
+		pyro= new Imagen("/pyro.jpg");
+		Titulo.setFont(new Font("Serif", Font.PLAIN, 30));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		panelG.setLayout(new GridLayout());
+		panelG.add(uma);
+		panelG.add(Titulo);
+		panelG.add(pyro);
 		panelB.add(mensajeJL);
 		panelD.setLayout(new BorderLayout());
 		panelE.add(importarJB);
 		panelE.add(verMedidasJB);
 		panelE.add(editarJB);
 		panelE.add(borrarJB);
+		panelD.add(panelG, BorderLayout.NORTH);
 		panelD.add(panelE, BorderLayout.CENTER);
 		panelF.setLayout(new BorderLayout());
-		panelF.add(moduloJL,BorderLayout.WEST);
+		panelF.add(moduloJL, BorderLayout.WEST);
 		panelD.add(panelF, BorderLayout.SOUTH);
 		setLayout(new BorderLayout());
 		scrollA = new JScrollPane(panelA);
 		scrollA.setMinimumSize(new Dimension(500, 500));
-        scrollA.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollA.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollA.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollA.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(scrollA, BorderLayout.CENTER);
 		add(panelB, BorderLayout.SOUTH);
 		add(panelD, BorderLayout.NORTH);
 		colorearBordear();
+	}
+	private void crearComponentes(List<String> valores) {
+		panelA = new JPanel();
+		if (valores != null) {
+			panelA.setLayout(new GridLayout(valores.size() + 1, 1));
+		} else {
+			panelA.setLayout(new GridLayout(1, 1));
+		}
+		panelB = new JPanel();
+		panelD = new JPanel();
+		panelE = new JPanel();
+		panelF = new JPanel();
+		panelG = new JPanel();
+		mensajeJL = new JLabel("");
+		moduloJL = new JLabel("     MODULOS");
+		moduloJL.setHorizontalAlignment(SwingConstants.RIGHT);
+		borrarJB = new JButton("Borrar");
+		editarJB = new JButton("Editar");
+		importarJB = new JButton("Importar");
+		verMedidasJB = new JButton("Ver medidas");
+		modulos = new LinkedList<JCheckBox>();
+		Titulo= new JLabel("PVCORRECTOR");
 	}
 	private void colorearBordear() {
 		for(JCheckBox modulo: modulos){
@@ -101,6 +119,7 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		panelD.setBackground(VistaModulos.FONDO);
 		panelE.setBackground(VistaModulos.FONDO);
 		panelF.setBackground(VistaModulos.FONDO);
+		panelG.setBackground(VistaModulos.FONDO);
         scrollA.setBackground(VistaModulos.FONDO);
         scrollA.setBorder(null);
 		setBackground(VistaModulos.FONDO);
@@ -112,7 +131,7 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	}
  
 	@Override
-	public void controlador(ActionListener ctrmodulos,ListSelectionListener campanya) {
+	public void controlador(ActionListener ctrmodulos) {
 		int i=0;
 		for(JCheckBox modulo: modulos){
 			modulo.setActionCommand(Integer.toString(i));
