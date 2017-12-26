@@ -3,6 +3,7 @@ package pVCorrectorModulos2;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import pVCorrectorMedidas.IMedida;
@@ -49,7 +50,7 @@ public class Campanya implements ICampanya {
 			setFechaFin(ff);
 		}
 	}
-
+	
 	public String getFechaInit() {
 		return fechaInit;
 	}
@@ -78,6 +79,11 @@ public class Campanya implements ICampanya {
 		IMedida.borrarTodas(modulo);
 		myBD.delete("DELETE FROM Campanya WHERE Nombre = '" + nombre + "' AND ModuloNombre = '" + modulo + "';");
 		modulo = nombre = fechaFin = fechaInit = null;
+	}
+
+	@Override
+	public List<IMedida> medidasAsociadas() {
+		return IMedida.getFromBD(modulo, nombre);
 	}
 
 }

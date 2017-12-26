@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base_de_datos.BD;
+import pVCorrectorMedidas.IMedida;
 
 public interface ICampanya {
 	static BD myBD = BD.getInstance();
@@ -28,6 +29,20 @@ public interface ICampanya {
 	}
 
 	public void borrar(); // si selecciona campaña y la borra directamente
+	
+	public List<IMedida> medidasAsociadas();
+	
+	public static List<IMedida> medidasAsociadas(List<ICampanya> camps){
+		List<IMedida> res = new ArrayList<IMedida>();
+		List<IMedida> aux2;
+		for(ICampanya c : camps) {
+			aux2 = c.medidasAsociadas();
+			for(IMedida m : aux2) {
+				res.add(m);
+			}
+		}
+		return res;
+	}
 	
 	String getFechaFin();
 	String getFechaInit();
