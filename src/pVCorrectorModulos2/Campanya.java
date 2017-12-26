@@ -97,7 +97,7 @@ public class Campanya implements ICampanya {
 
 	@Override
 	public List<IMedida> medidasAsociadas() {
-		return IMedida.getFromBD(modulo, nombre);
+		return IMedida.getFromBDCamp(modulo, nombre);
 	}
 
 }

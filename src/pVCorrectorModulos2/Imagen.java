@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class Imagen extends JPanel{
 	private String foto;
 	public Imagen(String dir) {
-		this.setSize(200,200);
+		this.setSize(400,400);
 		this.setMinimumSize(new Dimension(200, 200));
 		foto=dir;
 	}

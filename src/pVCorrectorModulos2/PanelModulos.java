@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -37,6 +39,7 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	private JPanel panelE;
 	private JPanel panelF;
 	private JPanel panelG;
+	private JPanel panelH;
 	private JLabel Titulo;
 	private List <JCheckBox > modulos;
 	private List <JCheckBox > campanyas;
@@ -64,21 +67,18 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		pyro= new Imagen("/pyro.jpg");
 		Titulo.setFont(new Font("Serif", Font.PLAIN, 30));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		panelG.setLayout(new GridLayout());
-		panelG.add(uma);
 		panelG.add(Titulo);
-		panelG.add(pyro);
 		panelB.add(mensajeJL);
-		panelD.setLayout(new BorderLayout());
 		panelE.add(importarJB);
 		panelE.add(verMedidasJB);
 		panelE.add(editarJB);
 		panelE.add(borrarJB);
-		panelD.add(panelG, BorderLayout.NORTH);
-		panelD.add(panelE, BorderLayout.CENTER);
+		panelDImagenes();
 		panelF.setLayout(new BorderLayout());
 		panelF.add(moduloJL, BorderLayout.WEST);
-		panelD.add(panelF, BorderLayout.SOUTH);
+		panelH.setLayout(new BorderLayout());
+		panelH.add(panelD, BorderLayout.CENTER);
+		panelH.add(panelF, BorderLayout.SOUTH);
 		setLayout(new BorderLayout());
 		scrollA = new JScrollPane(panelA);
 		scrollA.setMinimumSize(new Dimension(500, 500));
@@ -86,8 +86,49 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		scrollA.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(scrollA, BorderLayout.CENTER);
 		add(panelB, BorderLayout.SOUTH);
-		add(panelD, BorderLayout.NORTH);
+		add(panelH, BorderLayout.NORTH);
 		colorearBordear();
+	}
+	private void panelDImagenes() {
+		GridBagConstraints c;
+		JPanel panelI = panelIunionPaneles();
+		panelD.setLayout(new GridBagLayout());
+		c = new GridBagConstraints();
+		c.ipadx= 100;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridheight=2;
+		c.gridwidth=2;
+		c.fill= GridBagConstraints.BOTH;
+		panelD.add(uma, c);
+		c.gridx = 2;
+		c.gridy = 0;
+		c.gridheight=2;
+		c.gridwidth=4;
+		panelD.add(panelI, c);
+		c.gridx = 7;
+		c.gridy = 0;
+		c.gridheight=2;
+		c.gridwidth=2;
+		c.fill = GridBagConstraints.BOTH;
+		panelD.add(pyro, c);
+	}
+	private JPanel panelIunionPaneles() {
+		JPanel panelI= new JPanel();
+		panelI.setBackground(VistaModulos.FONDO);
+		panelI.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 2;
+		c.gridy = 0;
+		c.gridheight=1;
+		c.gridwidth=4;
+		panelI.add(panelG, c);
+		c.gridx = 2;
+		c.gridy = 1;
+		c.gridheight=1;
+		c.gridwidth=4;
+		panelI.add(panelE, c);
+		return panelI;
 	}
 	private void crearComponentes(List<String> valores) {
 		panelA = new JPanel();
@@ -101,6 +142,7 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		panelE = new JPanel();
 		panelF = new JPanel();
 		panelG = new JPanel();
+		panelH = new JPanel();
 		mensajeJL = new JLabel("");
 		moduloJL = new JLabel("     MODULOS");
 		moduloJL.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -160,6 +202,7 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		}	
 		if(lista!=null) {
 			panelC= new JPanel();
+			panelC.setLayout(new GridLayout(lista.size(), 1));
 			panelC.setBackground(FONDO);
 			campanyas=new LinkedList<JCheckBox>();
 			for(ICampanya campan: lista) {
