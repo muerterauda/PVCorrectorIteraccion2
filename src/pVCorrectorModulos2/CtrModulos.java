@@ -53,13 +53,16 @@ public class CtrModulos implements ActionListener{
 			} else if (vista.modulomarcados() > 1) {
 				vista.mensaje("Seleccione un solo modulo", Color.RED);
 			} else {
+				if(vista.getCampaSelecc()<1) {
 				String aux = vista.ModuloMarcado(vista.getMarcado());
 				Modulo m = new Modulo(aux);
 				crearVista(m);
 				vista.mensaje("Medidas cargadas correctamente",Color.BLUE);
+				}else {
+					List<String> lis=vista.getCampanyas();
+					
+				}
 			}
-
-			vista.ver(); //useless
 			break;
 		default:
 			int num= vista.modulomarcados();

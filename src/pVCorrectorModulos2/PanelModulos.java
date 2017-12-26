@@ -39,6 +39,7 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	private JPanel panelG;
 	private JLabel Titulo;
 	private List <JCheckBox > modulos;
+	private List <JCheckBox > campanyas;
 	private JButton borrarJB;
 	private JButton editarJB;
 	private JButton importarJB;
@@ -152,6 +153,7 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	public void setcampanyas(List<ICampanya> lista) {
 		if(scrollB!=null) {
 			frame.remove(scrollB);
+			campanyas=null;
 			if(panelC!=null)
 				frame.remove(panelC);
 			relleno=false;
@@ -159,10 +161,12 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		if(lista!=null) {
 			panelC= new JPanel();
 			panelC.setBackground(FONDO);
+			campanyas=new LinkedList<JCheckBox>();
 			for(ICampanya campan: lista) {
 				JCheckBox camp= new JCheckBox(campan.getNombre()+"-> Inicio:"+campan.getFechaInit()+", Fin:"+campan.getFechaFin());
 				camp.setBackground(FONDO);
 				panelC.add(camp);
+				campanyas.add(camp);
 			}
 			if(scrollB==null) {
 				scrollB= new JScrollPane(panelC);
@@ -199,6 +203,7 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	}
 	private void limpiarcampanyas() {
 		if(relleno){
+			campanyas=null;
 			frame.remove(scrollB);
 			scrollB=null;
 		}
@@ -230,10 +235,6 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		return modulos.get(n).isSelected();
 	}
 	@Override
-	public void ver() {
-		
-	}
-	@Override
 	public File importar() {
 		JFileChooser fichero= new JFileChooser();
 		int i=fichero.showOpenDialog(this);
@@ -261,8 +262,9 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		for(JCheckBox x:modulos){
 			panelA.add(x);
 		}
-		panelA.validate();
 		}
+		limpiarcampanyas();
+		panelA.validate();
 	}
 	private boolean esta(String c) {
 		boolean encontrado=false;
@@ -284,6 +286,23 @@ public class PanelModulos extends JPanel implements VistaModulos{
 			}
 		}
 		return lista;
+	}
+	@Override
+	public int getCampaSelecc() {
+		int numCam=0;
+		if(scrollB!=null&&panelC!=null&&campanyas!=null) {
+			for (JCheckBox jCheckBox : campanyas) {
+				if(jCheckBox.isSelected()) {
+					numCam++;
+				}
+			}
+		}
+		return numCam;
+	}
+	@Override
+	public List<String> getCampanyas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
