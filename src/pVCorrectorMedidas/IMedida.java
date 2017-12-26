@@ -39,12 +39,11 @@ public interface IMedida {
 		return aux2;
 	}
 	public static void borrarTodas(String modulo) {// si borra un modulo clicado se borra todo en cascada
-		List<String[]> IDs = myBD.select("SELECT id FROM Medida WHERE ModuloNombre = '" + modulo + "';");
-		for (String[] ss : IDs) {
-			myBD.delete("DELETE FROM Canal WHERE idM = " + ss[0] + ";");
-			myBD.delete("DELETE FROM Punto WHERE idMedida = " + ss[0] + ";");
+		 List<IMedida> med=getFromBD(modulo);
+		 for (IMedida iMedida : med) {
+			iMedida.borrar();
 		}
-		myBD.delete("DELETE FROM Medida WHERE ModuloNombre = '" + modulo + "';");
+		 med=null;
 	}
 
 	

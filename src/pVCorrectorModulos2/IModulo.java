@@ -30,8 +30,8 @@ public interface IModulo {
 	}
 
 	static void borrar(String modulo) { //borrado en cascada de todo lo dependiente del moudlulo y del mismo
-		ICampanya.borrarTodas(modulo);
 		IMedida.borrarTodas(modulo);
+		ICampanya.borrarTodas(modulo);
 		myBD.delete("DELETE FROM Modulo WHERE Name = '" + modulo + "';");
 	}
 

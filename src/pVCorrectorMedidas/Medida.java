@@ -140,9 +140,15 @@ public class Medida implements IMedida {
 	}
 
 	public void borrar() {
+		List<IMedida> m=getMedidasCorregidas();
+		for (IMedida iMedida : m) {
+			iMedida.borrar();
+		}
+		m=null;
+		myBD.delete("DELETE FROM PARAMETROSC WHERE id = " + id + ";");
 		myBD.delete("DELETE FROM Canal WHERE idM = " + id + ";");
 		myBD.delete("DELETE FROM Punto WHERE idMedida = " + id + ";");
-		myBD.delete("DELETE FROM Medida WHERE ModuloNombre = '" + modulo + "';");
+		myBD.delete("DELETE FROM Medida WHERE id = " + id + ";");
 		campania = fecha = FF = hora = IPmax = Isc = modulo = Pmax = Voc = VPmax = null;
 		punt= null;
 		medOrig= null;

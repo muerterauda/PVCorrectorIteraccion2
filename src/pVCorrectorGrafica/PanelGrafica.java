@@ -4,7 +4,10 @@ package pVCorrectorGrafica;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -53,8 +56,9 @@ public class PanelGrafica  extends JPanel implements VistaGraficas{
 	private DefaultXYDataset dsdef;
 	private JFreeChart chart;
 	private List<IMedida>listaCorrecciones;
-	private static InputStream  ficheroProcedimientos=PanelGrafica.class.getResourceAsStream("/procedimientos.txt");
+	private InputStream  ficheroProcedimientos;
 	public PanelGrafica(List<double[]>curva,IMedida idM) { 
+		ficheroProcedimientos= new BufferedInputStream(PanelGrafica.class.getResourceAsStream("/procedimientos.txt"));
 		med= idM;
 		curvaX= new double[curva.size()];
 		curvaY= new double[curva.size()];
