@@ -301,8 +301,15 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	}
 	@Override
 	public List<String> getCampanyas() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String>lista= new LinkedList<String>();
+		if(scrollB!=null&&panelC!=null&&campanyas!=null) {
+			for (JCheckBox jCheckBox : campanyas) {
+				if(jCheckBox.isSelected()) {
+					lista.add(jCheckBox.getText().split("->")[0]);
+				}
+			}
+		}
+		return lista;
 	}
 
 }
