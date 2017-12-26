@@ -61,7 +61,7 @@ public class Campanya implements ICampanya {
 			fechaInit = camp[2];
 			fechaFin = camp[3];
 		}else {
-			System.out.println("no está");
+			throw new RuntimeException("No existe la campanya");
 		}
 	}
 

@@ -64,7 +64,7 @@ public class CtrModulos implements ActionListener{
 					String aux = vista.ModuloMarcado(vista.getMarcado());
 					Modulo m = new Modulo(aux);
 					for(String cam: vista.getCampanyas()) {
-						//
+						ICampanya ca= new Campanya(cam,aux);
 						//lis.add(ca);
 					}
 					crearVistaCam(lis,m);
