@@ -39,7 +39,7 @@ public interface IMedida {
 		return aux2;
 	}
 	
-	public static List<IMedida> getFromBD(String modulo, String camp) {
+	public static List<IMedida> getFromBD(String modulo, String camp ) { 
 		List<String[]> aux = myBD
 				.select("SELECT Campania, Fecha, Hora FROM Medida WHERE ModuloNombre = '" + modulo + "' AND Campania = '"+camp+"' and MedidaOrig IS NULL;");
 		List<IMedida> aux2 = new ArrayList<IMedida>();
