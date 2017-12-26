@@ -170,14 +170,10 @@ public class PanelGrafica  extends JPanel implements VistaGraficas{
 	public Tuple2<String,String> seleccionarParametros() {
 		Metodo1Panel panel=new Metodo1Panel();
 		Tuple2<String,String> tuple=null;
-		try {
 		JOptionPane.showMessageDialog(null, panel, "Selecciona parametros para la correcion", JOptionPane.DEFAULT_OPTION);
 		String x=panel.getTemperatura();
 		String y=panel.getIrradiancia();
 		tuple= new Tuple2<String,String>(x, y);
-		}catch(Exception e) {
-			
-		}
 		return tuple;
 	}
 	@Override

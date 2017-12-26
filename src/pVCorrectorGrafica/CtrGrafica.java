@@ -25,7 +25,6 @@ public class CtrGrafica implements ActionListener{
 		String comando = evento.getActionCommand();
 		vista.mensaje(" ",Color.BLUE);
 		if(comando.equals(VistaGraficas.AplicarPorcedimiento)) {
-			//try {
 			switch(vista.getMetodoSelected()) {
 			case 0:
 				met=null;
@@ -44,14 +43,15 @@ public class CtrGrafica implements ActionListener{
 				vista.mensaje("No implementado",Color.RED);
 				break;
 			}
+			try {
 			if(met!=null) {
 				String nueva=null;
 				nueva= met.aplicarMetodo();
 				vista.añadirGrafica(nueva);
 			}
-			//}catch(Exception e) {
-				//vista.mensaje(e.getMessage(), Color.RED);
-			//}
+			}catch(Exception e) {
+				vista.mensaje("Error con los parametros", Color.RED);
+			}
 		}
 	}
 }

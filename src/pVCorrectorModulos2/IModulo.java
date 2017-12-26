@@ -45,4 +45,9 @@ public interface IModulo {
 	String getGamma();
 	String getKappa();
 	String getRs();
+	void setAlfa(String alfa2);
+	void setBata(String beta2);
+	void setGamma(String gamma2);
+	void setKappa(String kappa2);
+	void setRs(String rs2);
 }
