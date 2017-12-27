@@ -30,8 +30,8 @@ public interface IModulo {
 	}
 
 	static void borrar(String modulo) { //borrado en cascada de todo lo dependiente del moudlulo y del mismo
-		ICampanya.borrarTodas(modulo);
 		IMedida.borrarTodas(modulo);
+		ICampanya.borrarTodas(modulo);
 		myBD.delete("DELETE FROM Modulo WHERE Name = '" + modulo + "';");
 	}
 
@@ -45,4 +45,9 @@ public interface IModulo {
 	String getGamma();
 	String getKappa();
 	String getRs();
+	void setAlfa(String alfa2);
+	void setBata(String beta2);
+	void setGamma(String gamma2);
+	void setKappa(String kappa2);
+	void setRs(String rs2);
 }

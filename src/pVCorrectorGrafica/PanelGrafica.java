@@ -4,11 +4,16 @@ package pVCorrectorGrafica;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,8 +23,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.Popup;
+import javax.swing.SwingConstants;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -50,8 +57,9 @@ public class PanelGrafica  extends JPanel implements VistaGraficas{
 	private DefaultXYDataset dsdef;
 	private JFreeChart chart;
 	private List<IMedida>listaCorrecciones;
-	private static InputStream  ficheroProcedimientos=PanelGrafica.class.getResourceAsStream("/procedimientos.txt");
+	private InputStream  ficheroProcedimientos;
 	public PanelGrafica(List<double[]>curva,IMedida idM) { 
+		ficheroProcedimientos= new BufferedInputStream(PanelGrafica.class.getResourceAsStream("/procedimientos.txt"));
 		med= idM;
 		curvaX= new double[curva.size()];
 		curvaY= new double[curva.size()];
@@ -163,14 +171,10 @@ public class PanelGrafica  extends JPanel implements VistaGraficas{
 	public Tuple2<String,String> seleccionarParametros() {
 		Metodo1Panel panel=new Metodo1Panel();
 		Tuple2<String,String> tuple=null;
-		try {
 		JOptionPane.showMessageDialog(null, panel, "Selecciona parametros para la correcion", JOptionPane.DEFAULT_OPTION);
 		String x=panel.getTemperatura();
 		String y=panel.getIrradiancia();
 		tuple= new Tuple2<String,String>(x, y);
-		}catch(Exception e) {
-			
-		}
 		return tuple;
 	}
 	@Override
@@ -189,7 +193,13 @@ public class PanelGrafica  extends JPanel implements VistaGraficas{
 				}
 			}
 			List<double[]> lis=listaCorrecciones.get(j).generarCurvaIV();
-			nuevaGrafica("Grafica "+i,lis.get(0), lis.get(1));
+			double[] t = new double[lis.size()];
+			double[] c = new double[lis.size()];
+			for (int k = 0; k < lis.size(); k++) {
+				t[k] = lis.get(k)[0];
+				c[k] = lis.get(k)[1];
+			}
+			nuevaGrafica("Grafica "+i,t, c);
 		}
 		grafica.updateUI();
 	}

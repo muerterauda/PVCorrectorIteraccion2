@@ -29,7 +29,7 @@ public abstract class MetCorrecion {
 
 		beta = partirString(mod.getBeta())/1000;
 		
-		rs = partirString(mod.getRs());
+		rs = partirString(mod.getRs())/1000;
 		
 		Isc = partirString(med.getIsc());
 		

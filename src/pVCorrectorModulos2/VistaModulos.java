@@ -15,16 +15,12 @@ public interface VistaModulos {
 	 /**
 	  * Establece el controlador
 	  */
-	void controlador(ActionListener ctrMenu, ListSelectionListener campanyas);
+	void controlador(ActionListener ctrMenu);
 	 /**
 	  *Devuelve el fichero marcado por el usuario
 	  */
 	 int modulomarcados();
 
-	 /**
-	  * Esta vacio
-	  */
-	 void ver();
 	 /**
 	  * Carga las campa�as deprecated no usar
 	  */
@@ -46,6 +42,17 @@ public interface VistaModulos {
 	 * Le pasa un modulo para mostrarlo por pantalla
 	 */
 	void importar(String c,ActionListener k);
+	/**
+	 * Te devuelve el num de campanyas seleccionadas
+	 */
+	int getCampaSelecc();
+	/**
+	 * Te devuelve todas las campanyas seleccionadas
+	 */
+	List<String> getCampanyas();
+	/**
+	 * Te devuelve el modulo marcado de esa posicion
+	 */
 	String  ModuloMarcado(int n);
 	File importar();
 	static final String BORRAR="B";

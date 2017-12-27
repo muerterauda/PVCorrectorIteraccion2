@@ -25,29 +25,33 @@ public class CtrGrafica implements ActionListener{
 		String comando = evento.getActionCommand();
 		vista.mensaje(" ",Color.BLUE);
 		if(comando.equals(VistaGraficas.AplicarPorcedimiento)) {
-			//try {
 			switch(vista.getMetodoSelected()) {
 			case 0:
 				met=null;
 				vista.mensaje("No se ha seleccionado ningun metodo",Color.RED);
 				break;
 			case 1:
+				try {
 				Tuple2<String,String> b=vista.seleccionarParametros();
 				met= new Metodo1(med,b._1(), b._2());
+				}catch(Exception e) {
+					vista.mensaje("Error con los parametros", Color.RED);
+				}
 				break;
 			default:
 				met=null;
 				vista.mensaje("No implementado",Color.RED);
 				break;
 			}
+			try {
 			if(met!=null) {
 				String nueva=null;
 				nueva= met.aplicarMetodo();
 				vista.añadirGrafica(nueva);
 			}
-			//}catch(Exception e) {
-				//vista.mensaje(e.getMessage(), Color.RED);
-			//}
+			}catch(Exception e) {
+				vista.mensaje("Error con los parametros", Color.RED);
+			}
 		}
 	}
 }

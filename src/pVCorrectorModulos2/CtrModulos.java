@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -53,13 +54,22 @@ public class CtrModulos implements ActionListener{
 			} else if (vista.modulomarcados() > 1) {
 				vista.mensaje("Seleccione un solo modulo", Color.RED);
 			} else {
+				if(vista.getCampaSelecc()<1) {
 				String aux = vista.ModuloMarcado(vista.getMarcado());
 				Modulo m = new Modulo(aux);
 				crearVista(m);
 				vista.mensaje("Medidas cargadas correctamente",Color.BLUE);
+				}else {
+					List<ICampanya> lis= new LinkedList<ICampanya>();
+					String aux = vista.ModuloMarcado(vista.getMarcado());
+					Modulo m = new Modulo(aux);
+					for(String cam: vista.getCampanyas()) {
+						ICampanya ca= new Campanya(cam,aux);
+						lis.add(ca);
+					}
+					crearVistaCam(lis,m);
+				}
 			}
-
-			vista.ver(); //useless
 			break;
 		default:
 			int num= vista.modulomarcados();
@@ -84,6 +94,20 @@ public class CtrModulos implements ActionListener{
 		}
 	}
 
+	private void crearVistaCam(List<ICampanya> lis, Modulo m) {
+		JFrame ventana = new JFrame("Medidas");
+		VistaMedidas vista=new PanelMedidas(m.getNombre(), ICampanya.medidasAsociadas(lis));
+		CtrMedidas ctr = new CtrMedidas(vista, m);
+		vista.controlador(ctr);
+		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		ventana.setContentPane((JPanel) vista);
+	//	ventana.setMinimumSize(new Dimension(400*2,300*2));
+		ventana.pack();
+	//	ventana.setBackground(Color.WHITE);
+		ventana.setVisible(true);
+		ventana.setLocationRelativeTo(null);
+		
+	}
 	private void crearVista(Modulo m) {
 		JFrame ventana = new JFrame("Medidas");
 		VistaMedidas vista=new PanelMedidas(m.getNombre(), m.getMedidas());

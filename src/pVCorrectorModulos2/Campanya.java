@@ -3,6 +3,7 @@ package pVCorrectorModulos2;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import pVCorrectorMedidas.IMedida;
@@ -50,6 +51,20 @@ public class Campanya implements ICampanya {
 		}
 	}
 
+	public Campanya(String nombre, String modulo) {
+		if (ICampanya.isInDB(nombre, modulo)) {
+			String[] camp = myBD
+					.select("SELECT * FROM Campanya WHERE Nombre = '" + nombre + "' AND ModuloNombre = '" + modulo + "';")
+					.get(0);
+			this.nombre = camp[0];
+			this.modulo = camp[1];
+			fechaInit = camp[2];
+			fechaFin = camp[3];
+		}else {
+			throw new RuntimeException("No existe la campanya");
+		}
+	}
+
 	public String getFechaInit() {
 		return fechaInit;
 	}
@@ -78,6 +93,11 @@ public class Campanya implements ICampanya {
 		IMedida.borrarTodas(modulo);
 		myBD.delete("DELETE FROM Campanya WHERE Nombre = '" + nombre + "' AND ModuloNombre = '" + modulo + "';");
 		modulo = nombre = fechaFin = fechaInit = null;
+	}
+
+	@Override
+	public List<IMedida> medidasAsociadas() {
+		return IMedida.getFromBDCamp(modulo, nombre);
 	}
 
 }
