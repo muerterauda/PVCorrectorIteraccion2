@@ -125,8 +125,6 @@ public class Medida implements IMedida {
 
 	public List<double[]> generarCurvaPV() {
 		List<double[]> res = new ArrayList<double[]>();
-		// List.get(0) --> Tension
-		// List.get(1) --> Potencia
 		Punto p = getPuntosFromDB();
 		double tensiones[] = p.getTensiones();
 		double potencias[] = p.getPotencias();
