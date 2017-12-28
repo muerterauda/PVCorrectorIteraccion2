@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -192,7 +193,13 @@ public class PanelGrafica  extends JPanel implements VistaGraficas{
 				}
 			}
 			List<double[]> lis=listaCorrecciones.get(j).generarCurvaIV();
-			nuevaGrafica("Grafica "+i,lis.get(0), lis.get(1));
+			double[] t = new double[lis.size()];
+			double[] c = new double[lis.size()];
+			for (int k = 0; k < lis.size(); k++) {
+				t[k] = lis.get(k)[0];
+				c[k] = lis.get(k)[1];
+			}
+			nuevaGrafica("Grafica "+i,t, c);
 		}
 		grafica.updateUI();
 	}
