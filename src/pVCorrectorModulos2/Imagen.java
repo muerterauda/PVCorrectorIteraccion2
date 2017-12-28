@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Imagen extends JPanel{
 	private String foto;
 	public Imagen(String dir) {

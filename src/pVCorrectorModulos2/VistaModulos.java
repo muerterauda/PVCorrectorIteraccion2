@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 
-import javax.swing.event.ListSelectionListener;
-
 public interface VistaModulos {
 	 /**
 	  * Muestra el mensaje con el color seleccionado

@@ -6,14 +6,10 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,11 +18,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
-import javax.swing.Popup;
-import javax.swing.SwingConstants;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -39,6 +31,7 @@ import estructurasDatos.Tuple2;
 import pVCorrectorMedidas.IMedida;
 import pVCorrectorMedidas.Medida;
 
+@SuppressWarnings("serial")
 public class PanelGrafica  extends JPanel implements VistaGraficas{
 	private IMedida med;
 	private JLabel mensajeJL;

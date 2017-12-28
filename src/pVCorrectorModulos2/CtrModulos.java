@@ -97,7 +97,7 @@ public class CtrModulos implements ActionListener{
 	private void crearVistaCam(List<ICampanya> lis, Modulo m) {
 		JFrame ventana = new JFrame("Medidas");
 		VistaMedidas vista=new PanelMedidas(m.getNombre(), ICampanya.medidasAsociadas(lis));
-		CtrMedidas ctr = new CtrMedidas(vista, m);
+		CtrMedidas ctr = new CtrMedidas(vista);
 		vista.controlador(ctr);
 		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		ventana.setContentPane((JPanel) vista);
@@ -111,7 +111,7 @@ public class CtrModulos implements ActionListener{
 	private void crearVista(Modulo m) {
 		JFrame ventana = new JFrame("Medidas");
 		VistaMedidas vista=new PanelMedidas(m.getNombre(), m.getMedidas());
-		CtrMedidas ctr = new CtrMedidas(vista, m);
+		CtrMedidas ctr = new CtrMedidas(vista);
 		vista.controlador(ctr);
 		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		ventana.setContentPane((JPanel) vista);

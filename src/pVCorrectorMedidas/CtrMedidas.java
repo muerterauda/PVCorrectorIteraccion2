@@ -13,16 +13,12 @@ import javax.swing.JPanel;
 import pVCorrectorGrafica.CtrGrafica;
 import pVCorrectorGrafica.ListSelectionListenerGraficas;
 import pVCorrectorGrafica.PanelGrafica;
-import pVCorrectorModulos2.IModulo;
-import pVCorrectorModulos2.Modulo;
 
 public class CtrMedidas implements ActionListener{
 	private VistaMedidas menu;
-	private IModulo modulo;
 
-	public CtrMedidas(VistaMedidas menu, Modulo m) {
+	public CtrMedidas(VistaMedidas menu) {
 		this.menu= menu;
-		this.modulo = modulo;
 		this.menu.mensaje("Inicializacion correcta", Color.BLUE);
 	}
 	@Override

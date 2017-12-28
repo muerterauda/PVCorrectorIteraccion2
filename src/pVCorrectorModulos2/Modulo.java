@@ -1,10 +1,8 @@
 package pVCorrectorModulos2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pVCorrectorMedidas.IMedida;
-import pVCorrectorMedidas.Medida;
 
 public class Modulo implements IModulo {
 	

@@ -3,7 +3,6 @@ package pVCorrectorGrafica;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import estructurasDatos.Tuple2;
 

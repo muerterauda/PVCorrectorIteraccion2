@@ -2,7 +2,6 @@ package base_de_datos;
 
 
 import java.io.*;
-import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

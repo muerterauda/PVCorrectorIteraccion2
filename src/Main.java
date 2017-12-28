@@ -13,7 +13,7 @@ import pVCorrectorModulos2.VistaModulos;
 
 public class Main {
 	public static void main(String[] args) {
-		BD baseDeDatos= BD.getInstance();
+		BD.getInstance();
 		List<String> m = new LinkedList<String>();
 		for(String modulo : IModulo.getModulos()) {
 			m.add(modulo);

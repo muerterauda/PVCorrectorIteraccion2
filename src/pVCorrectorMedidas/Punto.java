@@ -1,9 +1,5 @@
 package pVCorrectorMedidas;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import base_de_datos.BD;
 
 public class Punto {
@@ -15,6 +11,10 @@ public class Punto {
 	private String corriente;
 	private String potencia;
 	private int idMed;
+
+	public int getIdMed() {
+		return idMed;
+	}
 
 	public Punto(String t, String c, String p, int idMedida) { // el punto puede estar repetido
 		try {

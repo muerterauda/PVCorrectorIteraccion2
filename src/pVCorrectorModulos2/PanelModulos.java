@@ -10,23 +10,17 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.text.IconView;
 
+@SuppressWarnings("serial")
 public class PanelModulos extends JPanel implements VistaModulos{
 	private JLabel mensajeJL;
 	private boolean relleno=false;

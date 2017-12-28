@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import javax.swing.SingleSelectionModel;
-
-import org.omg.Messaging.SyncScopeHelper;
-
 import pVCorrectorMedidas.Canal;
 import pVCorrectorMedidas.Medida;
 import pVCorrectorMedidas.Punto;
