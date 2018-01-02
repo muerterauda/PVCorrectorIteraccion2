@@ -20,6 +20,7 @@ public interface IMedida {
 	public String getModulo();
 	public String getCampania();
 	public String getIsc();
+	public String getVoc();
 	public List<IMedida> getMedidasCorregidas();
 	
 	public List<String>listacanalesM();

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import correcciones.MetCorrecion;
 import correcciones.Metodo1;
+import correcciones.Metodo2;
 import estructurasDatos.Tuple2;
 import pVCorrectorMedidas.IMedida;
 
@@ -35,7 +36,15 @@ public class CtrGrafica implements ActionListener{
 				Tuple2<String,String> b=vista.seleccionarParametros();
 				met= new Metodo1(med,b._1(), b._2());
 				}catch(Exception e) {
-					vista.mensaje("Error con los parametros", Color.RED);
+					vista.mensaje("Error con los parametros en Procedimiento 1", Color.RED);
+				}
+				break;
+			case 2:
+				try {
+				Tuple2<String,String> b=vista.seleccionarParametros();
+				met= new Metodo2(med, b._1(), b._2());
+				}catch(Exception e){
+					vista.mensaje("Error en los parametros en Procedimiento 2", Color.RED);
 				}
 				break;
 			default:
