@@ -251,23 +251,24 @@ public class Medida implements IMedida {
 	public List<String> getParametrosCorreccion() {
 		List<String> l = new ArrayList<String>();
 		if(medOrig!=null) {
-		String[]e=myBD.select("SELECT temperaturaObjetivo, irradianciaObjetivo FROM PARAMETROSC WHERE id = " + this.id + ";").get(0);
+		String[]e=myBD.select("SELECT temperaturaObjetivo, irradianciaObjetivo, metodo FROM PARAMETROSC WHERE id = " + this.id + ";").get(0);
 			l.add(e[0]);
 			l.add(e[1]);
+			l.add(e[2]);
 		}
 		return l;
 	}
 
-	public void setParametrosCorreccion(String t, String g) {
+	public void setParametrosCorreccion(String t, String g, String m) {
 		if (medOrig != null) {
 			Integer n = Integer
 					.parseInt(myBD.selectEscalar("SELECT COUNT(*) FROM PARAMETROSC WHERE id = " + this.id + ";"));
 			if (n > 0) {
 				myBD.update("UPDATE PARAMETROSC SET temperaturaObjetivo = '" + t + "', irradianciaObjetivo = '" + g
-						+ "' WHERE id = " + this.id + ";");
+						+ "', metodo = '"+m+"' WHERE id = " + this.id + ";");
 			} else {
-				myBD.insert("INSERT INTO PARAMETROSC (id, temperaturaObjetivo, irradianciaObjetivo) VALUES (" + this.id
-						+ ", '" + t + "', '" + g + "');");
+				myBD.insert("INSERT INTO PARAMETROSC (id, temperaturaObjetivo, irradianciaObjetivo, metodo) VALUES (" + this.id
+						+ ", '" + t + "', '" + g + "', '" + m + "');");
 			}
 		}
 	}

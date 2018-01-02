@@ -96,7 +96,7 @@ public class PanelGrafica  extends JPanel implements VistaGraficas{
 		listaCorrecciones=med.getMedidasCorregidas();
 		for(IMedida k: listaCorrecciones) {
 			List<String> listaParametrosCorrecion=k.getParametrosCorreccion();
-			String n=k.getId()+" Temperatura objetivo: "+listaParametrosCorrecion.get(0)+" Irradiancia objetivo: "+listaParametrosCorrecion.get(1);
+			String n=k.getId()+" Temperatura objetivo: "+listaParametrosCorrecion.get(0)+" Irradiancia objetivo: "+listaParametrosCorrecion.get(1)+" Metodo de Correccion: "+listaParametrosCorrecion.get(2);
 			modeloGraficasCorregidas.addElement(n);
 		}
 		graficasCorregidas= new JList<String>(modeloGraficasCorregidas);

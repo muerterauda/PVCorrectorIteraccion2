@@ -58,4 +58,5 @@ CREATE TABLE PARAMETROSC(
 	id int PRIMARY KEY,
 	temperaturaObjetivo varchar(20) NOT NULL,
 	irradianciaObjetivo varchar(20) NOT NULL,
+	metodo varchar(100) NOT NULL,
 	FOREIGN KEY(id) REFERENCES Medida(id)); 

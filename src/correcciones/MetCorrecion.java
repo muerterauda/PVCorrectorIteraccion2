@@ -20,9 +20,12 @@ public abstract class MetCorrecion {
 	protected String t2;
 	protected String g2;
 	protected float Isc;
+	protected float Voc;
+	static final protected float a = (float) 0.06; //Preguntar a michel por si acaso es un parametro que el ususario tiene que introducir
 	
 	public MetCorrecion(IMedida medida, String t, String g) {
 		med = medida;
+		
 		mod = new Modulo(medida.getModulo());
 		
 		alfa = partirString(mod.getAlfa())/1000;
@@ -32,6 +35,8 @@ public abstract class MetCorrecion {
 		rs = partirString(mod.getRs())/1000;
 		
 		Isc = partirString(med.getIsc());
+		
+		Voc = partirString(med.getVoc());
 		
 		obtenerValoresIniciales();
 		

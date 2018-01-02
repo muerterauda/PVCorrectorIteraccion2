@@ -10,7 +10,7 @@ public interface IMedida {
 	
 	public void borrar();
 	public void añadirVars(List<String> l);
-	public void setParametrosCorreccion(String t, String g);
+	public void setParametrosCorreccion(String t, String g, String m);
 	public List<double[]> generarCurvaIV();
 	public List<double[]> generarCurvaPV();
 	
@@ -20,6 +20,7 @@ public interface IMedida {
 	public String getModulo();
 	public String getCampania();
 	public String getIsc();
+	public String getVoc();
 	public List<IMedida> getMedidasCorregidas();
 	
 	public List<String>listacanalesM();
