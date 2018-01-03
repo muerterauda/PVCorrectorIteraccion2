@@ -187,8 +187,6 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	}
 	@Override
 	public void setcampanyas(List<ICampanya> lista) {
-		if(lista!=null)
-			System.out.println(lista.toString());
 		if(scrollB!=null) {
 			frame.remove(scrollB);
 			scrollB=null;
