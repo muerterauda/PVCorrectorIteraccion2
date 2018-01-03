@@ -52,7 +52,7 @@ public interface VistaModulos {
 	 * Te devuelve el modulo marcado de esa posicion
 	 */
 	String  ModuloMarcado(int n);
-	File importar();
+	File[] importar();
 	static final String BORRAR="B";
 	static final String IMPORTAR="I";
 	static final String VER="V";

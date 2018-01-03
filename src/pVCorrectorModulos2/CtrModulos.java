@@ -38,14 +38,20 @@ public class CtrModulos implements ActionListener{
 			vista.mensaje("Edicion realizada correctamente",Color.BLUE);
 			break;
 		case VistaModulos.IMPORTAR:
-			File ficheroimportacion=vista.importar();
-			try{
-				LectorArchivo lector= new LectorArchivo(ficheroimportacion);
-				lector.leer();
-				vista.importar(lector.getModulo(),this);
-				vista.mensaje("Importacion realizada correctamente",Color.BLUE);
-			}catch(Exception e){
-				vista.mensaje("Error al importar el fichero", Color.RED);
+			File[] ficheroimportacion=vista.importar();
+			try {
+			for (int i = 0; i < ficheroimportacion.length; i++) {
+				try{
+					LectorArchivo lector= new LectorArchivo(ficheroimportacion[i]);
+					lector.leer();
+					vista.importar(lector.getModulo(),this);
+					vista.mensaje("Importacion realizada correctamente",Color.BLUE);
+				}catch(Exception e){
+					vista.mensaje("Error al importar el fichero", Color.RED);
+				}
+			}
+			}catch(Exception e) {
+				vista.mensaje("Impotacion cancelada", Color.RED);
 			}
 			break;
 		case VistaModulos.VER:

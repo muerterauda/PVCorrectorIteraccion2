@@ -187,8 +187,11 @@ public class PanelModulos extends JPanel implements VistaModulos{
 	}
 	@Override
 	public void setcampanyas(List<ICampanya> lista) {
+		if(lista!=null)
+			System.out.println(lista.toString());
 		if(scrollB!=null) {
 			frame.remove(scrollB);
+			scrollB=null;
 			campanyas=null;
 			if(panelC!=null)
 				frame.remove(panelC);
@@ -272,11 +275,12 @@ public class PanelModulos extends JPanel implements VistaModulos{
 		return modulos.get(n).isSelected();
 	}
 	@Override
-	public File importar() {
+	public File[] importar() {
 		JFileChooser fichero= new JFileChooser();
+		fichero.setMultiSelectionEnabled(true);
 		int i=fichero.showOpenDialog(this);
 		if(i==JFileChooser.APPROVE_OPTION){
-			return fichero.getSelectedFile();
+			return fichero.getSelectedFiles();
 		}else{
 			return null;
 		}
